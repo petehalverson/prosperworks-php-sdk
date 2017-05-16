@@ -5,4 +5,5 @@ interface HttpClientInterface {
 
 	public function get($cmd, array $data = []);
 	public function post($cmd, array $data = []);
+    public function put($cmd, array $data = []);
 }
