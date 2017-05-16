@@ -1,9 +1,8 @@
 {
-    "name": "prosperworks/php-sdk-v1",
-    "description": "Prosperworks PHP SDK",
+    "name": "shoppingfeed/prosperworks",
+    "description": "re-packaged Prosperworks PHP SDK",
     "keywords": ["prosperworks", "api", "sdk"],
     "type": "library",
-    "homepage": "https://github.com/radoneman/prosperworks-php-sdk",
     "license": "GPL-2.0",
     "authors": [
         {
