@@ -35,6 +35,11 @@ class GuzzleHttpClient implements HttpClientInterface
 		return $this->exec($cmd, 'post', $data);
 	}
 
+	public function put($cmd, array $data = [])
+	{
+		return $this->exec($cmd, 'put', $data);
+	}
+
 	private function exec($cmd, $method = 'get', array $data = [])
 	{
 		$client = new Client(array('base_url' => $this->url));
@@ -46,6 +51,12 @@ class GuzzleHttpClient implements HttpClientInterface
 			));
 		} else if ($method == 'post') {
 			$response = $client->post($cmd, array(
+				'headers' => $this->headers,
+				'body' => json_encode($data),
+				'verify' => false // disable SSL verification
+			));
+		} else if ($method == 'put') {
+			$response = $client->put($cmd, array(
 				'headers' => $this->headers,
 				'body' => json_encode($data),
 				'verify' => false // disable SSL verification

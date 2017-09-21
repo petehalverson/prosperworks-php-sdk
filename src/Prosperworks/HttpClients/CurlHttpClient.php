@@ -31,6 +31,11 @@ class CurlHttpClient implements HttpClientInterface
 		return $this->exec($cmd, 'post', $data);
 	}
 
+	public function put($cmd, array $data = [])
+	{
+		return $this->exec($cmd, 'put', $data);
+	}
+
 	private function exec($cmd, $method = 'get', array $data = [])
 	{
 		$ch = curl_init();
@@ -47,6 +52,10 @@ class CurlHttpClient implements HttpClientInterface
 			CURLOPT_SSL_VERIFYPEER => false,
 		);
 		if ($method == 'post') {
+			$options[CURLOPT_POSTFIELDS] = json_encode($data);
+		}
+		if ($method == 'put') {
+			$options[CURLOPT_CUSTOMREQUEST] = 'PUT';
 			$options[CURLOPT_POSTFIELDS] = json_encode($data);
 		}
 		curl_setopt_array($ch, $options);
